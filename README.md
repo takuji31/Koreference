@@ -9,9 +9,9 @@ repositories {
     maven { url  "http://dl.bintray.com/takuji31/maven" }
 }
 dependencies {
-    compile 'jp.takuji31.koreference:koreference:0.1.1'
+    compile 'jp.takuji31.koreference:koreference:0.1.2'
     // optional: gson support
-    compile 'jp.takuji31.koreference:koreference-gson:0.1.1'
+    compile 'jp.takuji31.koreference:koreference-gson:0.1.2'
 }
 ```
 
