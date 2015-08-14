@@ -1,0 +1,83 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group=POM_GROUP_ID
+version=POM_VERSION
+
+def siteUrl = 'https://github.com/takuji31/Koreference'
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_API_KEY
+//    dryRun = true
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'Koreference'
+        userOrg = BINTRAY_USER
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/takuji31/Koreference.git'
+        issueTrackerUrl = 'https://github.com/takuji31/Koreference/issues'
+        publicDownloadNumbers = true
+
+        version {
+            name = '0.1.0'
+            desc = 'Koreference initial release'
+            vcsTag = '0.1.0'
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'Koreference'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'takuji31'
+                        name 'Takuji Nishibayashi'
+                        email 'takuji31+koreferene@gmail.com'
+                    }
+                }
+                scm {
+                    connection 'https://github.com/takuji31/Koreference.git'
+                    developerConnection 'https://github.com/takuji31/Koreference.git'
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+artifacts {
+//    archives javadocJar
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
+}
