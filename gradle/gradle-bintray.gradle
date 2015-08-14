@@ -32,7 +32,7 @@ install {
     repositories.mavenInstaller {
         pom {
             project {
-                packaging 'aar'
+                packaging 'jar'
                 name 'Koreference'
                 url siteUrl
                 licenses {
