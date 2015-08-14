@@ -3,7 +3,17 @@ Android SharedPreference delegate property for Kotlin
 
 ## Installation
 
-TBD
+In your build.gradle
+```gradle
+repositories {
+    maven { url  "http://dl.bintray.com/takuji31/maven" }
+}
+dependencies {
+    compile 'jp.takuji31.koreference:koreference:0.1.1'
+    // optional: gson support
+    compile 'jp.takuji31.koreference:koreference-gson:0.1.1'
+}
+```
 
 ## Usage
 
