@@ -1,10 +1,11 @@
-package jp.takuji31.koreference
+package jp.takuji31.koreference.test
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import android.test.AndroidTestCase
+import jp.takuji31.koreference
 import org.junit
 import org.junit.runner.RunWith
 import java.util.*
