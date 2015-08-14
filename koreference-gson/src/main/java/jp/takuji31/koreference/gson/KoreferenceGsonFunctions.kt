@@ -1,7 +1,6 @@
 package jp.takuji31.koreference.gson
 
 import com.google.gson.Gson
-import jp.takuji31.koreference.Koreference
 import jp.takuji31.koreference.KoreferenceDelegate
 import jp.takuji31.koreference.gson.converter.GsonConverter
 import jp.takuji31.koreference.gson.converter.typeToken
