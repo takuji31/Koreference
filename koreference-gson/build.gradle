@@ -1,4 +1,14 @@
+buildscript {
+    ext.kotlin_version = '0.12.1230'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 22
@@ -9,6 +19,7 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -21,6 +32,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':library')
-    compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    androidTestCompile 'com.android.support.test:runner:0.3'
 }
