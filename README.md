@@ -6,7 +6,7 @@ Android SharedPreference delegate property for Kotlin
 In your build.gradle
 ```gradle
 repositories {
-    maven { url  "http://dl.bintray.com/takuji31/maven" }
+    jcenter()
 }
 dependencies {
     compile 'jp.takuji31.koreference:koreference:0.1.2'
