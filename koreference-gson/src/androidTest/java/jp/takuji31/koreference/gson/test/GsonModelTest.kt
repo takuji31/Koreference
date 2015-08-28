@@ -4,12 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import android.test.AndroidTestCase
-import jp.takuji31.koreference.gson
 import org.junit
 import org.junit.runner.RunWith
 import kotlin.properties.Delegates
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 /**
  * Created by takuji on 2015/08/14.
@@ -20,7 +19,7 @@ public class GsonModelTest {
         InstrumentationRegistry.getTargetContext()
     }
 
-    val pref : SharedPreferences by Delegates.lazy {
+    val pref: SharedPreferences by Delegates.lazy {
         context.getSharedPreferences("test", Context.MODE_PRIVATE)
     }
 

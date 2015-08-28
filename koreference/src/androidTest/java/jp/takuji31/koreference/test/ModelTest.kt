@@ -4,13 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import android.test.AndroidTestCase
-import jp.takuji31.koreference
 import org.junit
 import org.junit.runner.RunWith
-import java.util.*
 import kotlin.properties.Delegates
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 /**
  * Created by takuji on 2015/08/10.
@@ -73,7 +71,7 @@ public class ModelTest {
         assertNull(model.stringSetValue, "Nullable string set default value")
 
         model.stringValue = "new value"
-        model.stringSetValue  = setOf("foo", "bar")
+        model.stringSetValue = setOf("foo", "bar")
 
         assertEquals(model.stringValue!!, "new value", "Nullable string new value")
         assertEquals(model.stringSetValue!!, setOf("foo", "bar"), "Nullable string set new value")
