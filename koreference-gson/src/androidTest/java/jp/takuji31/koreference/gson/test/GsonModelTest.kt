@@ -13,26 +13,26 @@ import kotlin.test.assertNull
 /**
  * Created by takuji on 2015/08/14.
  */
-RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4::class)
 public class GsonModelTest {
-    val context: Context by Delegates.lazy {
+    val context: Context by lazy(LazyThreadSafetyMode.NONE) {
         InstrumentationRegistry.getTargetContext()
     }
 
-    val pref: SharedPreferences by Delegates.lazy {
+    val pref: SharedPreferences by lazy(LazyThreadSafetyMode.NONE) {
         context.getSharedPreferences("test", Context.MODE_PRIVATE)
     }
 
-    junit.Before
+    @junit.Before
     fun setup() {
         pref.edit().clear().apply()
     }
 
-    junit.After
+    @junit.After
     fun teardown() {
     }
 
-    junit.Test
+    @junit.Test
     fun testGsonModel() {
         val model = GsonTestModel(pref = pref)
 

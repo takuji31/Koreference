@@ -4,36 +4,37 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import org.junit
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.properties.Delegates
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 /**
  * Created by takuji on 2015/08/10.
  */
-RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4::class)
 public class ModelTest {
-    val context: Context by Delegates.lazy {
+    val context: Context by lazy() {
         InstrumentationRegistry.getTargetContext()
     }
 
-    val pref: SharedPreferences by Delegates.lazy {
+    val pref: SharedPreferences by lazy() {
         context.getSharedPreferences("test", Context.MODE_PRIVATE)
     }
 
-    junit.Before
+    @Before
     fun setup() {
         pref.edit().clear().commit()
     }
 
-    junit.After
+    @After
     fun teardown() {
         pref.edit().clear().commit()
     }
 
-    junit.Test
+    @Test
     fun testDefaultValue() {
         val model = TestPreferenceModel(pref = pref)
         assertEquals(model.stringValue, "default value", "String default value")
@@ -44,7 +45,7 @@ public class ModelTest {
         assertEquals(model.stringSetValue, setOf<String>(), "String set default value")
     }
 
-    junit.Test
+    @Test
     fun testSetValue() {
         val model = TestPreferenceModel(pref = pref)
 
@@ -63,7 +64,7 @@ public class ModelTest {
         assertEquals(model.stringSetValue, setOf("foo", "bar"), "String set default value")
     }
 
-    junit.Test
+    @Test
     fun testNullable() {
         val model = TestNullablePreferenceModel(pref = pref)
 

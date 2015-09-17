@@ -9,8 +9,8 @@ import kotlin.reflect.KClass
 /**
  * Created by takuji on 2015/08/14.
  */
-public inline fun <reified T: Any> typeToken() : Type {
-    return object : TypeToken<T>() {}.getType()
+public inline fun <reified T> typeToken() : Type {
+    return object : TypeToken<T>() {}.type
 }
 public interface GsonConverter<T : Any?> : ValueConverter<String?, T> {
     val gson: Gson

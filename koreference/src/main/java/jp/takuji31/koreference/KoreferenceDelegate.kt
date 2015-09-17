@@ -11,18 +11,18 @@ import kotlin.properties.ReadWriteProperty
  */
 public abstract class KoreferenceDelegate<M : Any?, P : Any?>(val default: M, val name: String? = null) : ReadWriteProperty<SharedPreferences, M>, Preference<P>, ValueConverter<P, M> {
 
-    val rawDefaultValue: P by Delegates.lazy {
+    val rawDefaultValue: P by lazy(LazyThreadSafetyMode.NONE) {
         toPreferenceValue(default)
     }
 
-    override fun get(thisRef: SharedPreferences, desc: PropertyMetadata): M {
-        val value = get(thisRef, name ?: desc.name, rawDefaultValue)
+    override fun get(thisRef: SharedPreferences, property: PropertyMetadata): M {
+        val value = get(thisRef, name ?: property.name, rawDefaultValue)
         return toModelValue(value)
     }
 
-    override fun set(thisRef: SharedPreferences, desc: PropertyMetadata, value: M) {
+    override fun set(thisRef: SharedPreferences, property: PropertyMetadata, value: M) {
         val editor = thisRef.edit()
-        set(editor, name ?: desc.name, toPreferenceValue(value))
+        set(editor, name ?: property.name, toPreferenceValue(value))
         editor.apply()
     }
 
