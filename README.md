@@ -1,4 +1,6 @@
 # Koreference
+[![Circle CI](https://circleci.com/gh/takuji31/Koreference/tree/master.svg?style=svg)](https://circleci.com/gh/takuji31/Koreference/tree/master)
+
 Android SharedPreference delegate property for Kotlin
 
 ## Installation
