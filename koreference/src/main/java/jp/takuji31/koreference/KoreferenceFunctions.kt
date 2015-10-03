@@ -2,7 +2,7 @@ package jp.takuji31.koreference
 
 import jp.takuji31.koreference.converter.RawValueConverter
 import jp.takuji31.koreference.type.*
-import java.util.HashSet
+import java.util.*
 
 /**
  * Created by takuji on 2015/08/09.

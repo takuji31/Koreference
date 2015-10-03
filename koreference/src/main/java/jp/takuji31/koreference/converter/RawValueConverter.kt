@@ -3,7 +3,7 @@ package jp.takuji31.koreference.converter
 /**
  * Created by takuji on 2015/08/14.
  */
-public interface  RawValueConverter<T> : ValueConverter<T, T> {
+public interface RawValueConverter<T> : ValueConverter<T, T> {
     override fun toPreferenceValue(value: T): T {
         return value
     }

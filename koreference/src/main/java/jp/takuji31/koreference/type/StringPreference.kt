@@ -1,7 +1,6 @@
 package jp.takuji31.koreference.type
 
 import android.content.SharedPreferences
-import jp.takuji31.koreference.type.Preference
 
 /**
  * Created by takuji on 2015/08/14.

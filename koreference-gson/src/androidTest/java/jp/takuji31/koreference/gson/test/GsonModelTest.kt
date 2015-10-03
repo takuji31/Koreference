@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import org.junit
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.properties.Delegates
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
@@ -23,16 +24,16 @@ public class GsonModelTest {
         context.getSharedPreferences("test", Context.MODE_PRIVATE)
     }
 
-    @junit.Before
+    @Before
     fun setup() {
         pref.edit().clear().apply()
     }
 
-    @junit.After
+    @After
     fun teardown() {
     }
 
-    @junit.Test
+    @Test
     fun testGsonModel() {
         val model = GsonTestModel(pref = pref)
 
