@@ -11,9 +11,9 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile 'jp.takuji31.koreference:koreference:0.2.1'
+    compile 'jp.takuji31.koreference:koreference:0.3.0'
     // optional: gson support
-    compile 'jp.takuji31.koreference:koreference-gson:0.2.1'
+    compile 'jp.takuji31.koreference:koreference-gson:0.3.0'
 }
 ```
 
