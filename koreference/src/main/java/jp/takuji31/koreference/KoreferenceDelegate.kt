@@ -10,7 +10,7 @@ import kotlin.properties.ReadWriteProperty
  */
 public abstract class KoreferenceDelegate<M : Any?, P : Any?>(val default: M, val name: String? = null) : ReadWriteProperty<SharedPreferences, M>, Preference<P>, ValueConverter<P, M> {
 
-    private val rawDefaultValue: P by lazy(LazyThreadSafetyMode.NONE) {
+    private val rawDefaultValue: P by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         toPreferenceValue(default)
     }
 
