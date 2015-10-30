@@ -15,28 +15,4 @@ abstract class KoreferenceModel(pref: SharedPreferences) : SharedPreferences by 
     constructor(context: Context, name: String) : this(context = context, name = name, mode = Context.MODE_PRIVATE) {
     }
 
-    fun transaction(f: KoreferenceModel.() -> TransactionResult) {
-        transactionEditor = edit();
-        val result = f()
-        val editor = transactionEditor
-        if (editor != null) {
-            if (result == TransactionResult.COMMIT) {
-                editor.commit()
-            } else if (result == TransactionResult.APPLY) {
-                editor.apply()
-            }
-            transactionEditor = null
-        }
-    }
-
-    fun bulk(f: KoreferenceModel.() -> Unit) {
-        transaction {
-            f()
-            TransactionResult.APPLY
-        }
-    }
-
-    enum class TransactionResult {
-        DISCARD, COMMIT, APPLY
-    }
 }

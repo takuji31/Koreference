@@ -21,9 +21,14 @@ public abstract class KoreferenceProperty<M : Any?, P : Any?>(val default: M, va
     }
 
     override fun setValue(thisRef: SharedPreferences, property: KProperty<*>, value: M) {
-        val editor = thisRef.edit()
+        var editor = if (thisRef is KoreferenceModel) thisRef.transactionEditor else null
+        var needsApply = editor == null
+        editor = editor ?: thisRef.edit()
+
         set(editor, name ?: property.name, toPreferenceValue(value))
-        editor.apply()
+        if (needsApply) {
+            editor.apply()
+        }
     }
 
 }
