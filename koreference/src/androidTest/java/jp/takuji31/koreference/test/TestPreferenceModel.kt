@@ -13,4 +13,6 @@ public class TestPreferenceModel(pref: SharedPreferences) : SharedPreferences by
     var floatValue: Float by floatPreference(12.34f)
     var boolValue: Boolean by booleanPreference(true)
     var stringSetValue: Set<String> by stringSetPreference(setOf())
+
+    var customKeyValue : String by stringPreference(name = "hogeKey")
 }

@@ -78,4 +78,19 @@ public class ModelTest {
         assertEquals(model.stringSetValue!!, setOf("foo", "bar"), "Nullable string set new value")
 
     }
+
+    @Test
+    fun testKeys() {
+        val model = TestPreferenceModel(pref = pref)
+
+        val nextValue = "next value!!!"
+        model.stringValue = nextValue
+
+        assertEquals(pref.getString("stringValue", ""), nextValue, "Correct key value")
+
+        val customKeyValue = "This is custom key value"
+        model.customKeyValue = customKeyValue
+
+        assertEquals(pref.getString("hogeKey", ""), customKeyValue, "Correct custom key value")
+    }
 }
