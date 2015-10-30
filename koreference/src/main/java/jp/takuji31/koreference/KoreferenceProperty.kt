@@ -25,4 +25,5 @@ public abstract class KoreferenceProperty<M : Any?, P : Any?>(val default: M, va
         set(editor, name ?: property.name, toPreferenceValue(value))
         editor.apply()
     }
+
 }
