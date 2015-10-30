@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import jp.takuji31.koreference.converter.ValueConverter
 import jp.takuji31.koreference.type.Preference
 import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 
 /**
  * Created by takuji on 2015/08/08.
@@ -14,15 +15,14 @@ public abstract class KoreferenceProperty<M : Any?, P : Any?>(val default: M, va
         toPreferenceValue(default)
     }
 
-    operator override fun get(thisRef: SharedPreferences, property: PropertyMetadata): M {
+    override fun getValue(thisRef: SharedPreferences, property: KProperty<*>): M {
         val value = get(thisRef, name ?: property.name, rawDefaultValue)
         return toModelValue(value)
     }
 
-    operator override fun set(thisRef: SharedPreferences, property: PropertyMetadata, value: M) {
+    override fun setValue(thisRef: SharedPreferences, property: KProperty<*>, value: M) {
         val editor = thisRef.edit()
         set(editor, name ?: property.name, toPreferenceValue(value))
         editor.apply()
     }
-
 }
