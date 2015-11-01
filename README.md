@@ -39,8 +39,16 @@ Create model instance and set/get value
 
 ```kotlin
 val pref = MyPreferences(context = this)
+
+// set values
 pref.name = "takuji31"
 pref.age = 28
+
+// this is same
+pref.bulk {
+    name = "takuji31"
+    age = 28
+}
 
 val name = pref.name //takuji31
 val age = pref.age //28
