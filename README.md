@@ -11,15 +11,44 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile 'jp.takuji31.koreference:koreference:0.3.0'
+    compile 'jp.takuji31.koreference:koreference:1.0.0'
     // optional: gson support
-    compile 'jp.takuji31.koreference:koreference-gson:0.3.0'
+    compile 'jp.takuji31.koreference:koreference-gson:1.0.0'
+}
+```
+## Get started
+
+Create your preference model
+
+```kotlin
+class MyPreferences(context : Context) : KoreferenceModel(context = context, name = "my_preferences") {
+	var name : String by stringPreference("noname")
+	var age : int by intPreference(17)
 }
 ```
 
-## Usage
+You can also use other constructors
 
-Create preference model
+```kotlin
+class MyPreferences(pref : SharedPreferences) : KoreferenceModel(pref = pref)
+// or
+class MyPreferences(context : Context) : KoreferenceModel(context = context, name = "my_preferences", mode = Context.MODE_PRIVATE)
+```
+
+Create model instance and set/get value
+
+```kotlin
+val pref = MyPreferences(context = this)
+pref.name = "takuji31"
+pref.age = 28
+
+val name = pref.name //takuji31
+val age = pref.age //28
+```
+
+## Preference delegate properies
+
+Koreference has basic delegate properties
 
 ```kotlin
 public class PreferenceModel(pref : SharedPreferences) : SharedPreferences by pref {
@@ -36,20 +65,29 @@ public class PreferenceModel(pref : SharedPreferences) : SharedPreferences by pr
 }
 ```
 
-Create model instance and set propety!
+## Custom properties
+
+You can create custom properties.
+
+Default properties are example.
+
+```
+//TODO write sample codes
+```
+
+## SharedPreferences vs KoreferenceModel
+
+KoreferenceModel is SharedPreferences delegate.
+
+You can also use SharedPreferences.
+
+But, SharedPreferences does not support bulk setter
+
+You can use KoreferenceModel as SharedPreferences!
 
 ```kotlin
-val model = TestPreferenceModel(pref = context.getSharedPreferences("test", Context.MODE_PRIVATE))
-
-// Set value
-model.stringValue = "new value"
-model.intValue = 12345
-model.longValue = 12345678901234L
-model.floatValue = 1234.5678f
-model.boolValue = false
-model.stringSetValue = setOf("foo", "bar")
-
 // SharedPreference methods can use directly!
+val pref = MyPreferences(context = this)
 model.edit().clear().apply()
 ```
 
