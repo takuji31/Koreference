@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 /**
  * Created by takuji on 2015/08/14.
  */
-public interface BooleanPreference : Preference<Boolean> {
+interface BooleanPreference : Preference<Boolean> {
     override fun get(pref: SharedPreferences, key: String, default: Boolean): Boolean {
         return pref.getBoolean(key, default)
     }

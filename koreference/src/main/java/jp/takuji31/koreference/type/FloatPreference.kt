@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 /**
  * Created by takuji on 2015/08/14.
  */
-public interface FloatPreference : Preference<Float> {
+interface FloatPreference : Preference<Float> {
     override fun get(pref: SharedPreferences, key: String, default: Float): Float {
         return pref.getFloat(key, default)
     }

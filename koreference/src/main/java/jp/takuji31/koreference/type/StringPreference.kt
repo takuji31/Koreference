@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 /**
  * Created by takuji on 2015/08/14.
  */
-public interface StringPreference : Preference<String> {
+interface StringPreference : Preference<String> {
     override fun get(pref: SharedPreferences, key: String, default: String): String {
         return pref.getString(key, default)
     }

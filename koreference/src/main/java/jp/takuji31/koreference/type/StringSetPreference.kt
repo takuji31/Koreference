@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 /**
  * Created by takuji on 2015/08/14.
  */
-public interface StringSetPreference : Preference<Set<String>> {
+interface StringSetPreference : Preference<Set<String>> {
     override fun get(pref: SharedPreferences, key: String, default: Set<String>): Set<String> {
         return pref.getStringSet(key, default)
     }

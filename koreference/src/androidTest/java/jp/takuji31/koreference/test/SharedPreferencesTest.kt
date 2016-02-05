@@ -14,8 +14,7 @@ import kotlin.test.assertNull
 /**
  * Created by takuji on 2015/08/10.
  */
-@RunWith(AndroidJUnit4::class)
-public class SharedPreferencesTest {
+@RunWith(AndroidJUnit4::class) class SharedPreferencesTest {
     val context: Context by lazy() {
         InstrumentationRegistry.getTargetContext()
     }

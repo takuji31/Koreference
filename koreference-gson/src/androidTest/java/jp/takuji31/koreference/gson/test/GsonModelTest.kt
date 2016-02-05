@@ -14,8 +14,7 @@ import kotlin.test.assertNull
 /**
  * Created by takuji on 2015/08/14.
  */
-@RunWith(AndroidJUnit4::class)
-public class GsonModelTest {
+@RunWith(AndroidJUnit4::class) class GsonModelTest {
     val context: Context by lazy(LazyThreadSafetyMode.NONE) {
         InstrumentationRegistry.getTargetContext()
     }

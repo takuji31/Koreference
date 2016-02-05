@@ -10,13 +10,11 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 
 /**
  * Created by takuji on 2015/08/10.
  */
-@RunWith(AndroidJUnit4::class)
-public class KoreferenceModelTest {
+@RunWith(AndroidJUnit4::class) class KoreferenceModelTest {
     val context: Context by lazy() {
         InstrumentationRegistry.getTargetContext()
     }

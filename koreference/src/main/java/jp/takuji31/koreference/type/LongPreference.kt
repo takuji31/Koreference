@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 /**
  * Created by takuji on 2015/08/14.
  */
-public interface LongPreference : Preference<Long> {
+interface LongPreference : Preference<Long> {
     override fun get(pref: SharedPreferences, key: String, default: Long): Long {
         return pref.getLong(key, default)
     }
