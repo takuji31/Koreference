@@ -35,6 +35,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     androidTestCompile 'com.android.support.test:runner:0.3'
+    androidTestCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+
 }
 
 apply from: rootProject.file('gradle/gradle-bintray.gradle')
