@@ -32,7 +32,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':koreference')
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.code.gson:gson:2.4'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     androidTestCompile 'com.android.support.test:runner:0.3'
     androidTestCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
