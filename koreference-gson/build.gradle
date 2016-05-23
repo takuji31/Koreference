@@ -12,7 +12,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 16
@@ -34,7 +34,7 @@ dependencies {
     compile project(':koreference')
     compile 'com.google.code.gson:gson:2.4'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    androidTestCompile 'com.android.support.test:runner:0.3'
+    androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
 
 }
