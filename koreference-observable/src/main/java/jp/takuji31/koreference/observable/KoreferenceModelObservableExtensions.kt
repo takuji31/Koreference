@@ -7,20 +7,32 @@ import io.reactivex.Single
 import jp.takuji31.koreference.KoreferenceModel
 import jp.takuji31.koreference.KoreferenceProperty
 import kotlin.reflect.KProperty1
+import kotlin.reflect.jvm.isAccessible
 
-inline fun <reified T : KoreferenceModel, reified R> T.getValueAsSingle(property: KProperty1<T, R>): Single<R> = Single.fromCallable {
+inline fun <reified T : KoreferenceModel, reified R> T.getValueAsSingle(property: KProperty1<T, R>): Single<R> {
     checkKoreferenceProperty(this, property)
-    property.get(this)
+    return Single.fromCallable {
+        getValueFromProperty(property)
+    }
+}
+
+fun <R, T : KoreferenceModel> T.getValueFromProperty(property: KProperty1<T, R>): R {
+    val accessible = property.isAccessible
+    property.isAccessible = true
+    val value = property.get(this)
+    property.isAccessible = accessible
+    return value
 }
 
 inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProperty1<T, R>): Observable<R> {
-    var koreferenceProperty = checkKoreferenceProperty(this, property)
+    val koreferenceProperty = checkKoreferenceProperty(this, property)
+    val propertyName = koreferenceProperty.name ?: property.name
     return Observable.create { emitter ->
-        val initialiValue = property.get(this)
+        val initialiValue = getValueFromProperty(property)
+
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            val name = koreferenceProperty.name ?: property.name
-            if (TextUtils.equals(key, name)) {
-                emitter.onNext(property.get(this))
+            if (TextUtils.equals(key, propertyName)) {
+                emitter.onNext(getValueFromProperty(property))
             }
         }
         emitter.onNext(initialiValue)
@@ -33,6 +45,10 @@ inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProper
 
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : KoreferenceModel, reified R> checkKoreferenceProperty(receiver: T, property: KProperty1<T, R>): KoreferenceProperty<T, R> {
-    return property.getDelegate(receiver) as? KoreferenceProperty<T, R>
-            ?: throw IllegalArgumentException("${receiver::class.qualifiedName}.${property.name} is not Koreference delegate property")
+    val accessible = property.isAccessible
+    property.isAccessible = true
+    val koreferenceProperty = property.getDelegate(receiver) as? KoreferenceProperty<T, R>
+    property.isAccessible = accessible
+    koreferenceProperty ?: throw IllegalArgumentException("${receiver::class.qualifiedName}.${property.name} is not Koreference delegate property")
+    return koreferenceProperty
 }

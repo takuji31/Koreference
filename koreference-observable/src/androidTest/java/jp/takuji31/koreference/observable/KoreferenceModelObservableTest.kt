@@ -50,13 +50,18 @@ class KoreferenceModelObservableTest {
 
         val testSubscriber = model.observe(TestKoreferenceModel::stringValue).test()
 
-        testSubscriber.assertValue("firstValue")
-
         model.stringValue = "secondValue"
+
+        testSubscriber.awaitCount(2)
 
         model.stringValue = "thirdValue"
 
-        testSubscriber.assertValue("thirdValue")
+        testSubscriber.awaitCount(3)
+
         testSubscriber.assertValues("firstValue", "secondValue", "thirdValue")
+
+        assertFailsWith<IllegalArgumentException> {
+            model.observe(TestKoreferenceModel::noKoreferenceProperty).test()
+        }
     }
 }
