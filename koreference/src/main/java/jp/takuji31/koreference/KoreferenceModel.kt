@@ -9,10 +9,8 @@ import android.content.SharedPreferences
 abstract class KoreferenceModel(pref: SharedPreferences) : SharedPreferences by pref {
     internal var transactionEditor: SharedPreferences.Editor? = null
 
-    constructor(context: Context, name: String, mode: Int) : this(pref = context.getSharedPreferences(name, mode)) {
-    }
+    constructor(context: Context, name: String, mode: Int) : this(pref = context.getSharedPreferences(name, mode))
 
-    constructor(context: Context, name: String) : this(context = context, name = name, mode = Context.MODE_PRIVATE) {
-    }
+    constructor(context: Context, name: String) : this(context = context, name = name, mode = Context.MODE_PRIVATE)
 
 }
