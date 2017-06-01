@@ -4,7 +4,7 @@ package jp.takuji31.koreference
  * Created by takuji on 2015/10/30.
  */
 fun <T : KoreferenceModel> T.transaction(f: T.() -> TransactionResult) {
-    transactionEditor = edit();
+    transactionEditor = edit()
     val result = f()
     val editor = transactionEditor
     if (editor != null) {
