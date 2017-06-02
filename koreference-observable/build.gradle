@@ -43,3 +43,4 @@ dependencies {
 }
 buildscript {
 }
+apply from: rootProject.file('gradle/gradle-bintray.gradle')
