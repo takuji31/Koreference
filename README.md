@@ -11,11 +11,11 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile 'jp.takuji31.koreference:koreference:1.3.0'
+    compile 'jp.takuji31.koreference:koreference:1.4.0'
     // optional: gson support
-    compile 'jp.takuji31.koreference:koreference-gson:1.3.0'
+    compile 'jp.takuji31.koreference:koreference-gson:1.4.0'
     // optional: RxJava2 observable support
-    compile 'jp.takuji31.koreference:koreference-observable:1.3.0'
+    compile 'jp.takuji31.koreference:koreference-observable:1.4.0'
 }
 ```
 ## Get started
