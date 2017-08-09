@@ -8,6 +8,7 @@ import jp.takuji31.koreference.KoreferenceModel
 import jp.takuji31.koreference.KoreferenceProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.jvm.isAccessible
+import kotlin.reflect.jvm.javaGetter
 
 inline fun <reified T : KoreferenceModel, reified R> T.getValueAsSingle(property: KProperty1<T, R>): Single<R> {
     checkKoreferenceProperty(this, property)
@@ -18,9 +19,12 @@ inline fun <reified T : KoreferenceModel, reified R> T.getValueAsSingle(property
 
 fun <R, T : KoreferenceModel> T.getValueFromProperty(property: KProperty1<T, R>): R {
     val accessible = property.isAccessible
-    property.isAccessible = true
-    val value = property.get(this)
-    property.isAccessible = accessible
+    val value = synchronized(property.javaGetter ?: throw IllegalArgumentException("${this::class.qualifiedName}.${property.name} has no Getter"), {
+        property.isAccessible = true
+        val value = property.get(this)
+        property.isAccessible = accessible
+        value
+    })
     return value
 }
 
@@ -46,9 +50,12 @@ inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProper
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : KoreferenceModel, reified R> checkKoreferenceProperty(receiver: T, property: KProperty1<T, R>): KoreferenceProperty<T, R> {
     val accessible = property.isAccessible
-    property.isAccessible = true
-    val koreferenceProperty = property.getDelegate(receiver) as? KoreferenceProperty<T, R>
-    property.isAccessible = accessible
+    val koreferenceProperty = synchronized(property.javaGetter ?: throw IllegalArgumentException("${receiver::class.qualifiedName}.${property.name} has no Getter"), {
+        property.isAccessible = true
+        val koreferenceProperty = property.getDelegate(receiver) as? KoreferenceProperty<T, R>
+        property.isAccessible = accessible
+        koreferenceProperty
+    })
     koreferenceProperty ?: throw IllegalArgumentException("${receiver::class.qualifiedName}.${property.name} is not Koreference delegate property")
     return koreferenceProperty
 }
