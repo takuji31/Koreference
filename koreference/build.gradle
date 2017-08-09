@@ -1,15 +1,10 @@
 def kotlinVersion = rootProject.ext.kotlinVersion
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    }
-}
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.takuji31'
 
 android {
     compileSdkVersion 26
@@ -40,4 +35,4 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
 }
-apply from: rootProject.file('gradle/gradle-bintray.gradle')
+//apply from: rootProject.file('gradle/gradle-bintray.gradle')
