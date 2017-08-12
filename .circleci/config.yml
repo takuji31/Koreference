@@ -5,14 +5,14 @@ jobs:
             - image: circleci/android:api-26-alpha
         steps:
             - checkout
-      - restore_cache:
-          key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }-{{ checksum  "koreference-observable/build.gradle" }
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths: ~/.gradle
-          key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }-{{ checksum  "koreference-observable/build.gradle" }
-      - run:
-          name: Run Tests
-          command: ./gradlew testDebugUnitTest
+            - restore_cache:
+                key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }-{{ checksum  "koreference-observable/build.gradle" }
+            - run:
+                name: Download Dependencies
+                command: ./gradlew androidDependencies
+            - save_cache:
+                paths: ~/.gradle
+                key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }-{{ checksum  "koreference-observable/build.gradle" }
+            - run:
+                name: Run Tests
+                command: ./gradlew testDebugUnitTest
