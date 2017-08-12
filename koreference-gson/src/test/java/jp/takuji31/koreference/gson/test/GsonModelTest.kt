@@ -8,13 +8,15 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 /**
  * Created by takuji on 2015/08/14.
  */
-@RunWith(AndroidJUnit4::class) class GsonModelTest {
+@RunWith(RobolectricTestRunner::class)
+class GsonModelTest {
     val context: Context by lazy(LazyThreadSafetyMode.NONE) {
         InstrumentationRegistry.getTargetContext()
     }

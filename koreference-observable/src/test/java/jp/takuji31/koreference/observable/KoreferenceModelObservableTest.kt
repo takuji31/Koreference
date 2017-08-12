@@ -9,10 +9,11 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import kotlin.properties.Delegates
 import kotlin.test.assertFailsWith
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
 class KoreferenceModelObservableTest {
 
     var pref: SharedPreferences by Delegates.notNull()

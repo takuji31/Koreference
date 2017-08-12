@@ -23,6 +23,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -30,9 +35,9 @@ dependencies {
     compile project(':koreference')
     compile 'com.google.code.gson:gson:2.4'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
-
+    testCompile 'com.android.support.test:runner:0.5'
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+    testCompile "org.robolectric:robolectric:3.4.2"
 }
 
 //apply from: rootProject.file('gradle/gradle-bintray.gradle')

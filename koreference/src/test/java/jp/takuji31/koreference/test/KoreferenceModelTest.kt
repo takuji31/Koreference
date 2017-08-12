@@ -9,12 +9,14 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import kotlin.test.assertEquals
 
 /**
  * Created by takuji on 2015/08/10.
  */
-@RunWith(AndroidJUnit4::class) class KoreferenceModelTest {
+@RunWith(RobolectricTestRunner::class)
+class KoreferenceModelTest {
     val context: Context by lazy() {
         InstrumentationRegistry.getTargetContext()
     }

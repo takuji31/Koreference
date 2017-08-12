@@ -25,6 +25,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -34,8 +39,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "io.reactivex.rxjava2:rxjava:2.1.0"
 
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+    testCompile 'com.android.support.test:runner:0.5'
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+    testCompile "org.robolectric:robolectric:3.4.2"
 }
 buildscript {
 }
