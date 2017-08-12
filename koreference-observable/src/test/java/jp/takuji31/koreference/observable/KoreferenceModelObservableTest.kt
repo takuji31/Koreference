@@ -10,6 +10,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
 import kotlin.properties.Delegates
 import kotlin.test.assertFailsWith
 
@@ -20,7 +21,7 @@ class KoreferenceModelObservableTest {
 
     @Before
     fun setup() {
-        pref = InstrumentationRegistry.getTargetContext().getSharedPreferences("test", Context.MODE_PRIVATE)
+        pref = RuntimeEnvironment.application.getSharedPreferences("test", Context.MODE_PRIVATE)
         pref.edit().clear().apply()
     }
 

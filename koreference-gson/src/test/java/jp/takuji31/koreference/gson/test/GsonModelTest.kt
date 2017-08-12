@@ -8,7 +8,10 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.shadows.ShadowApplication
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
@@ -18,7 +21,7 @@ import kotlin.test.assertNull
 @RunWith(RobolectricTestRunner::class)
 class GsonModelTest {
     val context: Context by lazy(LazyThreadSafetyMode.NONE) {
-        InstrumentationRegistry.getTargetContext()
+        RuntimeEnvironment.application
     }
 
     val pref: SharedPreferences by lazy(LazyThreadSafetyMode.NONE) {

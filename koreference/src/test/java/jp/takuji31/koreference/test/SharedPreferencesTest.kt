@@ -9,6 +9,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
@@ -18,7 +19,7 @@ import kotlin.test.assertNull
 @RunWith(RobolectricTestRunner::class)
 class SharedPreferencesTest {
     val context: Context by lazy() {
-        InstrumentationRegistry.getTargetContext()
+        RuntimeEnvironment.application
     }
 
     val pref: SharedPreferences by lazy() {
@@ -27,12 +28,12 @@ class SharedPreferencesTest {
 
     @Before
     fun setup() {
-        pref.edit().clear().commit()
+        pref.edit().clear().apply()
     }
 
     @After
     fun teardown() {
-        pref.edit().clear().commit()
+        pref.edit().clear().apply()
     }
 
     @Test
