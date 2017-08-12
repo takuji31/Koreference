@@ -8,14 +8,14 @@ Android SharedPreference delegate property for Kotlin
 In your build.gradle
 ```gradle
 repositories {
-    jcenter()
+    maven { url 'https://jitpack.io' }
 }
 dependencies {
-    compile 'jp.takuji31.koreference:koreference:1.4.0'
+    compile 'jp.takuji31.koreference:koreference:1.5.0'
     // optional: gson support
-    compile 'jp.takuji31.koreference:koreference-gson:1.4.0'
+    compile 'jp.takuji31.koreference:koreference-gson:1.5.0'
     // optional: RxJava2 observable support
-    compile 'jp.takuji31.koreference:koreference-observable:1.4.0'
+    compile 'jp.takuji31.koreference:koreference-observable:1.5.0'
 }
 ```
 ## Get started
