@@ -58,31 +58,31 @@ class KoreferenceModelTest {
         assertEquals(model.stringSetValue, setOf("bulk", "string"), "String set default value")
     }
 
-    @Test
-    fun testTransactionCommit() {
-        val model = TestKoreferenceModel(pref = pref)
-
-        model.transaction {
-            stringValue = "Transaction string"
-            intValue = 234567
-            longValue = 2345678901L
-            floatValue = 2345.67891f
-            boolValue = false
-            stringSetValue = setOf("transaction", "string")
-
-            transactionCommit
-        }
-
-
-
-        assertEquals(model.stringValue, "Transaction string", "String new value")
-        assertEquals(model.intValue, 234567, "Int new value")
-        assertEquals(model.longValue, 2345678901L, "Long new value")
-        assertEquals(model.floatValue, 2345.67891f, "Float new value")
-        assertEquals(model.boolValue, false, "Boolean new value")
-        assertEquals(model.stringSetValue, setOf("transaction", "string"), "String set new value")
-    }
-
+//    @Test
+//    fun testTransactionCommit() {
+//        val model = TestKoreferenceModel(pref = pref)
+//
+//        model.transaction {
+//            stringValue = "Transaction string"
+//            intValue = 234567
+//            longValue = 2345678901L
+//            floatValue = 2345.67891f
+//            boolValue = false
+//            stringSetValue = setOf("transaction", "string")
+//
+//            transactionCommit
+//        }
+//
+//
+//
+//        assertEquals(model.stringValue, "Transaction string", "String new value")
+//        assertEquals(model.intValue, 234567, "Int new value")
+//        assertEquals(model.longValue, 2345678901L, "Long new value")
+//        assertEquals(model.floatValue, 2345.67891f, "Float new value")
+//        assertEquals(model.boolValue, false, "Boolean new value")
+//        assertEquals(model.stringSetValue, setOf("transaction", "string"), "String set new value")
+//    }
+//
     @Test
     fun testTransactionApply() {
         val model = TestKoreferenceModel(pref = pref)
