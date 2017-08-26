@@ -1,5 +1,5 @@
 # Koreference
-[![Circle CI](https://circleci.com/gh/takuji31/Koreference/tree/master.svg?style=svg)](https://circleci.com/gh/takuji31/Koreference/tree/master)
+[![Circle CI](https://circleci.com/gh/takuji31/Koreference/tree/master.svg?style=svg)](https://circleci.com/gh/takuji31/Koreference/tree/master) [![](https://jitpack.io/v/takuji31/Koreference.svg)](https://jitpack.io/#takuji31/Koreference)
 
 Android SharedPreference delegate property for Kotlin
 
@@ -11,11 +11,11 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    compile 'com.github.takuji31.Koreference:koreference:1.4.1'
+    compile 'com.github.takuji31.Koreference:koreference:1.4.2'
     // optional: gson support
-    compile 'com.github.takuji31.Koreference:koreference-gson:1.4.1'
+    compile 'com.github.takuji31.Koreference:koreference-gson:1.4.2'
     // optional: RxJava2 observable support
-    compile 'com.github.takuji31.Koreference:koreference-observable:1.4.1'
+    compile 'com.github.takuji31.Koreference:koreference-observable:1.4.2'
 }
 ```
 ## Get started
