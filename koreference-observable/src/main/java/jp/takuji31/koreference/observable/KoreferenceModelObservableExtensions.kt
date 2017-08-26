@@ -13,30 +13,19 @@ import kotlin.reflect.jvm.javaGetter
 inline fun <reified T : KoreferenceModel, reified R> T.getValueAsSingle(property: KProperty1<T, R>): Single<R> {
     checkKoreferenceProperty(this, property)
     return Single.fromCallable {
-        getValueFromProperty(property)
+        property.get(this)
     }
-}
-
-fun <R, T : KoreferenceModel> T.getValueFromProperty(property: KProperty1<T, R>): R {
-    val accessible = property.isAccessible
-    val value = synchronized(property.javaGetter ?: throw IllegalArgumentException("${this::class.qualifiedName}.${property.name} has no Getter"), {
-        property.isAccessible = true
-        val value = property.get(this)
-        property.isAccessible = accessible
-        value
-    })
-    return value
 }
 
 inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProperty1<T, R>): Observable<R> {
     val koreferenceProperty = checkKoreferenceProperty(this, property)
     val propertyName = koreferenceProperty.name ?: property.name
     return Observable.create { emitter ->
-        val initialiValue = getValueFromProperty(property)
+        val initialiValue = property.get(this)
 
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             if (TextUtils.equals(key, propertyName)) {
-                emitter.onNext(getValueFromProperty(property))
+                emitter.onNext(property.get(this))
             }
         }
         emitter.onNext(initialiValue)

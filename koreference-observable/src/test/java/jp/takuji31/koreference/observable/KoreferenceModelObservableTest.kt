@@ -66,4 +66,18 @@ class KoreferenceModelObservableTest {
             model.observe(TestKoreferenceModel::noKoreferenceProperty).test()
         }
     }
+
+    @Test
+    fun privateProperty() {
+        val model = TestKoreferenceModel(pref)
+        model.putPrivateStringValue(value = "firstValue")
+
+        val testSubscriber = model.privateStringValueObservable.test()
+
+        testSubscriber.assertValue("firstValue")
+
+        val testSingleSubscriber = model.privateStringValueSingle.test()
+
+        testSingleSubscriber.assertValue("firstValue")
+    }
 }
