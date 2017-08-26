@@ -8,7 +8,6 @@ import jp.takuji31.koreference.KoreferenceModel
 import jp.takuji31.koreference.KoreferenceProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.jvm.isAccessible
-import kotlin.reflect.jvm.javaGetter
 
 inline fun <reified T : KoreferenceModel, reified R> T.getValueAsSingle(property: KProperty1<T, R>): Single<R> {
     checkKoreferenceProperty(this, property)
@@ -39,8 +38,8 @@ inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProper
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : KoreferenceModel, reified R> checkKoreferenceProperty(receiver: T, property: KProperty1<T, R>): KoreferenceProperty<T, R> {
     val accessible = property.isAccessible
-    val koreferenceProperty = synchronized(property.javaGetter ?: throw IllegalArgumentException("${receiver::class.qualifiedName}.${property.name} has no Getter"), {
-        property.isAccessible = true
+    property.isAccessible = true
+    val koreferenceProperty = synchronized(property, {
         val koreferenceProperty = property.getDelegate(receiver) as? KoreferenceProperty<T, R>
         property.isAccessible = accessible
         koreferenceProperty
