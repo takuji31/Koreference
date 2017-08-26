@@ -76,8 +76,12 @@ class KoreferenceModelObservableTest {
 
         testSubscriber.assertValue("firstValue")
 
+        model.putPrivateStringValue(value = "secondValue")
+
+        testSubscriber.assertValues("firstValue", "secondValue")
+
         val testSingleSubscriber = model.privateStringValueSingle.test()
 
-        testSingleSubscriber.assertValue("firstValue")
+        testSingleSubscriber.assertValue("secondValue")
     }
 }
