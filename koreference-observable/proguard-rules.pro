@@ -23,3 +23,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# for kotlin-reflect
+-keepattributes *Annotation*
+-dontwarn kotlin.reflect.jvm.internal.**
+-keep class kotlin.** { *; }
+-keep class org.jetbrains.** { *; }
