@@ -37,9 +37,10 @@ inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProper
 
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : KoreferenceModel, reified R> checkKoreferenceProperty(receiver: T, property: KProperty1<T, R>): KoreferenceProperty<T, R> {
-    val accessible = property.isAccessible
-    property.isAccessible = true
     val koreferenceProperty = synchronized(property, {
+        val accessible = property.isAccessible
+        property.isAccessible = true
+
         val koreferenceProperty = property.getDelegate(receiver) as? KoreferenceProperty<T, R>
         property.isAccessible = accessible
         koreferenceProperty
