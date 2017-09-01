@@ -32,5 +32,5 @@ inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProper
 }
 
 fun <T : KoreferenceModel, R> getKoreferencePropertyKey(receiver: T, property: KProperty1<T, R>): String {
-    return receiver.propertyToKeyMap[property.name] ?: throw IllegalArgumentException("${receiver::class.qualifiedName}.${property.name} is not Koreference delegate property")
+    return receiver.getSharedPreferencesKey(property.name) ?: throw IllegalArgumentException("${receiver::class.qualifiedName}.${property.name} is not Koreference delegate property")
 }

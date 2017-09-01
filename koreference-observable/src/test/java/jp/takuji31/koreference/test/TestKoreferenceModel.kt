@@ -8,7 +8,7 @@ import jp.takuji31.koreference.observable.getValueAsSingle
 import jp.takuji31.koreference.observable.observe
 import jp.takuji31.koreference.stringPreference
 
-class TestKoreferenceModel(pref: SharedPreferences) : KoreferenceModel(pref = pref) {
+class TestKoreferenceModel(pref: SharedPreferences) : KoreferenceModel(sharedPreferences = pref) {
     var stringValue: String by stringPreference(default = "default value")
     private var privateStringValue : String by stringPreference(default = "this is private property")
     val privateStringValueObservable : Observable<String> = observe(TestKoreferenceModel::privateStringValue)
