@@ -14,5 +14,5 @@ class TestPreferenceModel(pref: SharedPreferences) : KoreferenceModel(sharedPref
     var boolValue: Boolean by booleanPreference(true)
     var stringSetValue: Set<String> by stringSetPreference(setOf())
 
-    var customKeyValue : String by stringPreference(name = "hogeKey")
+    var customKeyValue : String by stringPreference(key = "hogeKey")
 }

@@ -7,6 +7,9 @@ import android.content.SharedPreferences
  * Created by takuji on 2015/10/30.
  */
 abstract class KoreferenceModel(val sharedPreferences: SharedPreferences) {
+
+    internal var propertyToKeyMap : MutableMap<String, String> = mutableMapOf()
+
     internal var transactionEditor: SharedPreferences.Editor? = null
 
     constructor(context: Context, name: String, mode: Int) : this(sharedPreferences = context.getSharedPreferences(name, mode))

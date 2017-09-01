@@ -9,14 +9,14 @@ import kotlin.reflect.KProperty
 /**
  * Created by takuji on 2015/08/08.
  */
-abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val name: String? = null) : ReadWriteProperty<KoreferenceModel, M>, Preference<P>, ValueConverter<P, M> {
+abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val preferenceKey: String) : ReadWriteProperty<KoreferenceModel, M>, Preference<P>, ValueConverter<P, M> {
 
     private val rawDefaultValue: P by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         toPreferenceValue(default)
     }
 
     override fun getValue(thisRef: KoreferenceModel, property: KProperty<*>): M {
-        val value = get(thisRef.sharedPreferences, name ?: property.name, rawDefaultValue)
+        val value = get(thisRef.sharedPreferences, preferenceKey, rawDefaultValue)
         return toModelValue(value)
     }
 
@@ -25,12 +25,12 @@ abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val name:
         val preferenceValue = toPreferenceValue(value)
 
         transactionEditor?.let {
-            set(it, name ?: property.name, preferenceValue)
+            set(it, preferenceKey, preferenceValue)
             return
         }
 
         val editor: SharedPreferences.Editor = thisRef.sharedPreferences.edit()
-        set(editor, name ?: property.name, preferenceValue)
+        set(editor, preferenceKey, preferenceValue)
         editor.apply()
     }
 
