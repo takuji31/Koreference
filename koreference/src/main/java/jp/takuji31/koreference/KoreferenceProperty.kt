@@ -24,8 +24,8 @@ abstract class KoreferenceProperty<M : Any?, P : Any?>(val default: M, val name:
         val transactionEditor = thisRef.transactionEditor
         val preferenceValue = toPreferenceValue(value)
 
-        transactionEditor?.apply {
-            set(this, name ?: property.name, preferenceValue)
+        transactionEditor?.let {
+            set(it, name ?: property.name, preferenceValue)
             return
         }
 
