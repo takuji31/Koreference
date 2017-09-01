@@ -31,13 +31,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':koreference')
-    compile 'com.google.code.gson:gson:2.4'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    testCompile 'com.android.support.test:runner:0.5'
-    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
-    testCompile "org.robolectric:robolectric:3.4.2"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':koreference')
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    testImplementation 'com.android.support.test:runner:1.0.1'
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+    testImplementation "org.robolectric:robolectric:3.4.2"
 }
 
 //apply from: rootProject.file('gradle/gradle-bintray.gradle')
