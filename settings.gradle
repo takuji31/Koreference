@@ -1,1 +1,1 @@
-include ':koreference', ':koreference-gson'
+include ':koreference', ':koreference-gson', ':koreference-observable'
