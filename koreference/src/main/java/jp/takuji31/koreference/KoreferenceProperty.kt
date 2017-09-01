@@ -9,7 +9,7 @@ import kotlin.reflect.KProperty
 /**
  * Created by takuji on 2015/08/08.
  */
-abstract class KoreferenceProperty<M : Any?, P : Any?>(val default: M, val name: String? = null) : ReadWriteProperty<KoreferenceModel, M>, Preference<P>, ValueConverter<P, M> {
+abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val name: String? = null) : ReadWriteProperty<KoreferenceModel, M>, Preference<P>, ValueConverter<P, M> {
 
     private val rawDefaultValue: P by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         toPreferenceValue(default)

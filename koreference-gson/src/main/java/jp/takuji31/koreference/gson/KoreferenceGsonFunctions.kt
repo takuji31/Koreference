@@ -10,17 +10,17 @@ import java.lang.reflect.Type
 /**
  * Created by takuji on 2015/08/14.
  */
-inline fun <reified T> gsonPreference(gson: Gson = Gson(), default : T, name: String? = null): KoreferenceProperty<T, String?> {
+inline fun <reified T> gsonPreference(gson: Gson = Gson(), default : T, name: String? = null): KoreferenceProperty<String?, T> {
     val type = typeToken<T>()
-    return object : KoreferenceProperty<T, String?> (default, name), NullableStringPreference, GsonConverter<T> {
+    return object : KoreferenceProperty<String?, T> (default, name), NullableStringPreference, GsonConverter<T> {
         override val type: Type = type
         override val gson : Gson = gson
     }
 }
 
-inline fun <reified T : Any> nullableGsonPreference(gson: Gson = Gson(), default : T? = null, name: String? = null): KoreferenceProperty<T?, String?> {
+inline fun <reified T : Any> nullableGsonPreference(gson: Gson = Gson(), default : T? = null, name: String? = null): KoreferenceProperty<String?, T?> {
     val type = typeToken<T>()
-    return object : KoreferenceProperty<T?, String?> (default, name), NullableStringPreference, GsonConverter<T?> {
+    return object : KoreferenceProperty<String?, T?> (default, name), NullableStringPreference, GsonConverter<T?> {
         override val type: Type = type
         override val gson : Gson = gson
     }
