@@ -2,9 +2,7 @@ package jp.takuji31.koreference.test
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
-import jp.takuji31.koreference.*
+import jp.takuji31.koreference.bulk
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -56,76 +54,5 @@ class KoreferenceModelTest {
         assertEquals(model.floatValue, 2345.6789f, "Float new value")
         assertEquals(model.boolValue, true, "Boolean new value")
         assertEquals(model.stringSetValue, setOf("bulk", "string"), "String set default value")
-    }
-
-//    @Test
-//    fun testTransactionCommit() {
-//        val model = TestKoreferenceModel(pref = pref)
-//
-//        model.transaction {
-//            stringValue = "Transaction string"
-//            intValue = 234567
-//            longValue = 2345678901L
-//            floatValue = 2345.67891f
-//            boolValue = false
-//            stringSetValue = setOf("transaction", "string")
-//
-//            transactionCommit
-//        }
-//
-//
-//
-//        assertEquals(model.stringValue, "Transaction string", "String new value")
-//        assertEquals(model.intValue, 234567, "Int new value")
-//        assertEquals(model.longValue, 2345678901L, "Long new value")
-//        assertEquals(model.floatValue, 2345.67891f, "Float new value")
-//        assertEquals(model.boolValue, false, "Boolean new value")
-//        assertEquals(model.stringSetValue, setOf("transaction", "string"), "String set new value")
-//    }
-//
-    @Test
-    fun testTransactionApply() {
-        val model = TestKoreferenceModel(pref = pref)
-
-        model.transaction {
-            stringValue = "Transaction string"
-            intValue = 234567
-            longValue = 2345678901L
-            floatValue = 2345.67891f
-            boolValue = false
-            stringSetValue = setOf("transaction", "string")
-
-            transactionApply
-        }
-
-
-
-        assertEquals(model.stringValue, "Transaction string", "String new value")
-        assertEquals(model.intValue, 234567, "Int new value")
-        assertEquals(model.longValue, 2345678901L, "Long new value")
-        assertEquals(model.floatValue, 2345.67891f, "Float new value")
-        assertEquals(model.boolValue, false, "Boolean new value")
-        assertEquals(model.stringSetValue, setOf("transaction", "string"), "String set new value")
-    }
-
-    @Test
-    fun testTransactionDiscard() {
-        val model = TestKoreferenceModel(pref = pref)
-        model.transaction {
-            stringValue = "Transaction string"
-            intValue = 234567
-            longValue = 2345678901L
-            floatValue = 2345.67891f
-            boolValue = false
-            stringSetValue = setOf("transaction", "string")
-
-            transactionDiscard
-        }
-        assertEquals(model.stringValue, "default value", "String default value")
-        assertEquals(model.intValue, 256, "Int default value")
-        assertEquals(model.longValue, 256L, "Long default value")
-        assertEquals(model.floatValue, 12.34f, "Float default value")
-        assertEquals(model.boolValue, true, "Boolean default value")
-        assertEquals(model.stringSetValue, setOf<String>(), "String set default value")
     }
 }
