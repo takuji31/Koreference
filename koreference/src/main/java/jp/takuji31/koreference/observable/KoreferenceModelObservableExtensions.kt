@@ -28,9 +28,9 @@ inline fun <reified T : KoreferenceModel, reified R> T.observe(property: KProper
             }
         }
         emitter.onNext(initialiValue)
-        this.registerOnSharedPreferenceChangeListener(listener)
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
         emitter.setCancellable {
-            this.unregisterOnSharedPreferenceChangeListener(listener)
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
         }
     }
 }

@@ -6,7 +6,7 @@ import jp.takuji31.koreference.*
 /**
  * Created by takuji on 2015/08/10.
  */
-class TestPreferenceModel(pref: SharedPreferences) : SharedPreferences by pref {
+class TestPreferenceModel(pref: SharedPreferences) : KoreferenceModel(sharedPreferences = pref) {
     var stringValue: String by stringPreference("default value")
     var intValue: Int by intPreference(256)
     var longValue: Long by longPreference(256L)

@@ -9,26 +9,29 @@ import kotlin.reflect.KProperty
 /**
  * Created by takuji on 2015/08/08.
  */
-abstract class KoreferenceProperty<M : Any?, P : Any?>(val default: M, val name: String? = null) : ReadWriteProperty<SharedPreferences, M>, Preference<P>, ValueConverter<P, M> {
+abstract class KoreferenceProperty<M : Any?, P : Any?>(val default: M, val name: String? = null) : ReadWriteProperty<KoreferenceModel, M>, Preference<P>, ValueConverter<P, M> {
 
     private val rawDefaultValue: P by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         toPreferenceValue(default)
     }
 
-    override fun getValue(thisRef: SharedPreferences, property: KProperty<*>): M {
-        val value = get(thisRef, name ?: property.name, rawDefaultValue)
+    override fun getValue(thisRef: KoreferenceModel, property: KProperty<*>): M {
+        val value = get(thisRef.sharedPreferences, name ?: property.name, rawDefaultValue)
         return toModelValue(value)
     }
 
-    override fun setValue(thisRef: SharedPreferences, property: KProperty<*>, value: M) {
-        var editor = if (thisRef is KoreferenceModel) thisRef.transactionEditor else null
-        var needsApply = editor == null
-        editor = editor ?: thisRef.edit()!!
+    override fun setValue(thisRef: KoreferenceModel, property: KProperty<*>, value: M) {
+        val transactionEditor = thisRef.transactionEditor
+        val preferenceValue = toPreferenceValue(value)
 
-        set(editor, name ?: property.name, toPreferenceValue(value))
-        if (needsApply) {
-            editor.apply()
+        transactionEditor?.apply {
+            set(this, name ?: property.name, preferenceValue)
+            return
         }
+
+        val editor: SharedPreferences.Editor = thisRef.sharedPreferences.edit()
+        set(editor, name ?: property.name, preferenceValue)
+        editor.apply()
     }
 
 }
