@@ -52,4 +52,20 @@ class KoreferenceModelTest {
         assertEquals(model.boolValue, true, "Boolean new value")
         assertEquals(model.stringSetValue, setOf("bulk", "string"), "String set default value")
     }
+
+    @Test(expected = IllegalStateException::class)
+    fun testNestedBulk() {
+        val model = TestKoreferenceModel(pref = pref)
+
+        model.bulk {
+            bulk {
+                stringValue = "Bulk string"
+                intValue = 23456
+                longValue = 234567890L
+                floatValue = 2345.6789f
+                boolValue = true
+                stringSetValue = setOf("bulk", "string")
+            }
+        }
+    }
 }
