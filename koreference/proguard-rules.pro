@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+# for kotlin-reflect
+-keepattributes *Annotation*
+-dontwarn kotlin.reflect.jvm.internal.**
+-keep class kotlin.** { *; }
+-keep class org.jetbrains.** { *; }
