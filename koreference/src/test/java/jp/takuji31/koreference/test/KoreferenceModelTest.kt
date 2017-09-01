@@ -11,16 +11,13 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import kotlin.test.assertEquals
 
-/**
- * Created by takuji on 2015/08/10.
- */
 @RunWith(RobolectricTestRunner::class)
 class KoreferenceModelTest {
-    val context: Context by lazy() {
+    val context: Context by lazy {
         RuntimeEnvironment.application
     }
 
-    val pref: SharedPreferences by lazy() {
+    val pref: SharedPreferences by lazy {
         context.getSharedPreferences("koreference", Context.MODE_PRIVATE)
     }
 
