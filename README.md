@@ -32,7 +32,7 @@ class MyPreferences(context : Context) : KoreferenceModel(context = context, nam
 You can also use other constructors
 
 ```kotlin
-class MyPreferences(pref : SharedPreferences) : KoreferenceModel(pref = pref)
+class MyPreferences(sharefPreferences : SharedPreferences) : KoreferenceModel(sharefPreferences = sharefPreferences)
 // or
 class MyPreferences(context : Context) : KoreferenceModel(context = context, name = "my_preferences", mode = Context.MODE_PRIVATE)
 ```
@@ -61,7 +61,7 @@ val age = pref.age //28
 Koreference has basic delegate properties
 
 ```kotlin
-public class PreferenceModel(pref : SharedPreferences) : SharedPreferences by pref {
+public class PreferenceModel(sharefPreferences : SharedPreferences) : KoreferenceModel(sharedPreferences = sharefPreferences) {
   var stringValue : String by stringPreference("default value")
   var intValue : Int by intPreference(256)
   var longValue : Long by longPreference(256L)
@@ -83,22 +83,6 @@ Default properties are example.
 
 ```
 //TODO write sample codes
-```
-
-## SharedPreferences vs KoreferenceModel
-
-KoreferenceModel is SharedPreferences delegate.
-
-You can also use SharedPreferences.
-
-But, SharedPreferences does not support bulk setter
-
-You can use KoreferenceModel as SharedPreferences!
-
-```kotlin
-// SharedPreference methods can use directly!
-val pref = MyPreferences(context = this)
-model.edit().clear().apply()
 ```
 
 ## License
