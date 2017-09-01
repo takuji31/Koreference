@@ -11,11 +11,11 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    compile 'com.github.takuji31.Koreference:koreference:1.4.2'
+    compile 'com.github.takuji31.Koreference:koreference:2.0.0'
     // optional: gson support
-    compile 'com.github.takuji31.Koreference:koreference-gson:1.4.2'
+    compile 'com.github.takuji31.Koreference:koreference-gson:2.0.0'
     // optional: RxJava2 observable support
-    compile 'com.github.takuji31.Koreference:koreference-observable:1.4.2'
+    compile 'com.github.takuji31.Koreference:koreference-observable:2.0.0'
 }
 ```
 ## Get started
