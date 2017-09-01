@@ -8,7 +8,12 @@ abstract class KoreferencePropertyProvider<P, M>(
         val defaultValue: M
 ) {
     operator fun provideDelegate(thisRef: KoreferenceModel, prop: KProperty<*>) : ReadWriteProperty<KoreferenceModel, M> {
-        return createDelegate(key ?: prop.name, defaultValue)
+        val propertyName = prop.name
+        val key = key ?: propertyName
+
+        thisRef.propertyToKeyMap[propertyName] = key
+
+        return createDelegate(key, defaultValue)
     }
 
     abstract fun createDelegate(key: String, defaultValue: M) : KoreferenceProperty<P, M>
