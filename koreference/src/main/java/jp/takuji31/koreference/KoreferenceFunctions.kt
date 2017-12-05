@@ -7,10 +7,10 @@ import java.util.*
 /**
  * Created by takuji on 2015/08/09.
  */
-fun stringPreference(default: String = "", key: String? = null): KoreferencePropertyProvider<String, String> {
-    return object : KoreferencePropertyProvider<String, String>(key, default){
-        override fun createDelegate(key: String, defaultValue: String): KoreferenceProperty<String, String> {
-            return object : KoreferenceProperty<String, String>(default = default, preferenceKey = key, valueConverter = ValueConverters.raw()), StringPreference {}
+fun stringPreference(default: String = "", key: String? = null): KoreferencePropertyProvider<String?, String> {
+    return object : KoreferencePropertyProvider<String?, String>(key, default){
+        override fun createDelegate(key: String, defaultValue: String): KoreferenceProperty<String?, String> {
+            return object : KoreferenceProperty<String?, String>(default = default, preferenceKey = key, valueConverter = ValueConverters.nonNull(defaultValue)), StringPreference {}
         }
     }
 }
@@ -18,7 +18,7 @@ fun stringPreference(default: String = "", key: String? = null): KoreferenceProp
 fun nullableStringPreference(default: String? = null, key: String? = null): KoreferencePropertyProvider<String?, String?> {
     return object : KoreferencePropertyProvider<String?, String?>(key, default){
         override fun createDelegate(key: String, defaultValue: String?): KoreferenceProperty<String?, String?> {
-            return object : KoreferenceProperty<String?, String?>(default = default, preferenceKey = key, valueConverter = ValueConverters.raw()), NullableStringPreference {}
+            return object : KoreferenceProperty<String?, String?>(default = default, preferenceKey = key, valueConverter = ValueConverters.raw()), StringPreference {}
         }
     }
 }
@@ -55,10 +55,10 @@ fun booleanPreference(default: Boolean = false, key: String? = null): Koreferenc
     }
 }
 
-fun stringSetPreference(default: Set<String> = HashSet<String>(), key: String? = null): KoreferencePropertyProvider<Set<String>, Set<String>> {
-    return object : KoreferencePropertyProvider<Set<String>, Set<String>>(key, default){
-        override fun createDelegate(key: String, defaultValue: Set<String>): KoreferenceProperty<Set<String>, Set<String>> {
-            return object : KoreferenceProperty<Set<String>, Set<String>>(default = default, preferenceKey = key, valueConverter = ValueConverters.raw()), StringSetPreference {}
+fun stringSetPreference(default: Set<String> = HashSet<String>(), key: String? = null): KoreferencePropertyProvider<Set<String>?, Set<String>> {
+    return object : KoreferencePropertyProvider<Set<String>?, Set<String>>(key, default){
+        override fun createDelegate(key: String, defaultValue: Set<String>): KoreferenceProperty<Set<String>?, Set<String>> {
+            return object : KoreferenceProperty<Set<String>?, Set<String>>(default = default, preferenceKey = key, valueConverter = ValueConverters.nonNull(defaultValue)), StringSetPreference {}
         }
     }
 }
@@ -66,7 +66,7 @@ fun stringSetPreference(default: Set<String> = HashSet<String>(), key: String? =
 fun nullableStringSetPreference(default: Set<String>? = null, key: String? = null): KoreferencePropertyProvider<Set<String>?, Set<String>?> {
     return object : KoreferencePropertyProvider<Set<String>?, Set<String>?>(key, default){
         override fun createDelegate(key: String, defaultValue: Set<String>?): KoreferenceProperty<Set<String>?, Set<String>?> {
-            return object : KoreferenceProperty<Set<String>?, Set<String>?>(default = default, preferenceKey = key, valueConverter = ValueConverters.raw()), NullableStringSetPreference {}
+            return object : KoreferenceProperty<Set<String>?, Set<String>?>(default = default, preferenceKey = key, valueConverter = ValueConverters.raw()), StringSetPreference {}
         }
     }
 }
