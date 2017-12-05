@@ -36,12 +36,12 @@ class KoreferenceModelObservableTest {
         val model = TestKoreferenceModel(pref)
         model.stringValue = "this is observed value"
 
-        val testSubscriber = model.getValueAsSingle(TestKoreferenceModel::stringValue).test()
+        val testSubscriber = model.getValueAsSingle(model::stringValue).test()
 
         testSubscriber.assertValue("this is observed value")
 
         assertFailsWith<IllegalArgumentException> {
-            model.getValueAsSingle(TestKoreferenceModel::noKoreferenceProperty).test()
+            model.getValueAsSingle(model::noKoreferenceProperty).test()
         }
     }
 
@@ -50,7 +50,7 @@ class KoreferenceModelObservableTest {
         val model = TestKoreferenceModel(pref)
         model.stringValue = "firstValue"
 
-        val testSubscriber = model.observe(TestKoreferenceModel::stringValue).test()
+        val testSubscriber = model.observe(model::stringValue).test()
 
         model.stringValue = "secondValue"
 
@@ -63,7 +63,7 @@ class KoreferenceModelObservableTest {
         testSubscriber.assertValues("firstValue", "secondValue", "thirdValue")
 
         assertFailsWith<IllegalArgumentException> {
-            model.observe(TestKoreferenceModel::noKoreferenceProperty).test()
+            model.observe(model::noKoreferenceProperty).test()
         }
     }
 
