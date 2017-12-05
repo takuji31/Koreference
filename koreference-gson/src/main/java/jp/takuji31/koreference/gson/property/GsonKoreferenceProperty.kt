@@ -11,7 +11,7 @@ import java.lang.reflect.Type
  */
 class GsonKoreferenceProperty<T: Any?>(
         default: T,
-        preferenceKey: String,
+        preferenceKey: String?,
         gson: Gson,
         type: Type
 ) : KoreferenceProperty<String?, T>(default, preferenceKey, GsonConverter<T>(gson, type), Stores.String)
