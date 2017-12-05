@@ -10,7 +10,7 @@ interface FloatPreference : Preference<Float> {
         return pref.getFloat(key, default)
     }
 
-    override fun set(editor: SharedPreferences.Editor, key: String, value: Float) {
+    override fun put(editor: SharedPreferences.Editor, key: String, value: Float) {
         editor.putFloat(key, value)
     }
 }

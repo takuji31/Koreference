@@ -10,7 +10,7 @@ interface BooleanPreference : Preference<Boolean> {
         return pref.getBoolean(key, default)
     }
 
-    override fun set(editor: SharedPreferences.Editor, key: String, value: Boolean) {
+    override fun put(editor: SharedPreferences.Editor, key: String, value: Boolean) {
         editor.putBoolean(key, value)
     }
 }

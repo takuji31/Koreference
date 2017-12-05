@@ -7,5 +7,5 @@ import android.content.SharedPreferences
  */
 interface Preference<T : Any?> {
     operator fun get(pref: SharedPreferences, key: String, default: T): T
-    operator fun set(editor: SharedPreferences.Editor, key: String, value: T)
+    fun put(editor: SharedPreferences.Editor, key: String, value: T)
 }

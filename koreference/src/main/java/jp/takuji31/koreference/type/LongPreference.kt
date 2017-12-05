@@ -10,7 +10,7 @@ interface LongPreference : Preference<Long> {
         return pref.getLong(key, default)
     }
 
-    override fun set(editor: SharedPreferences.Editor, key: String, value: Long) {
+    override fun put(editor: SharedPreferences.Editor, key: String, value: Long) {
         editor.putLong(key, value)
     }
 }

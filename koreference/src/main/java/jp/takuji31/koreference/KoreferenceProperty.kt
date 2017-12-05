@@ -25,12 +25,12 @@ abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val prefe
         val preferenceValue = valueConverter.toPreferenceValue(value)
 
         transactionEditor?.let {
-            set(it, preferenceKey, preferenceValue)
+            put(it, preferenceKey, preferenceValue)
             return
         }
 
         val editor: SharedPreferences.Editor = thisRef.sharedPreferences.edit()
-        set(editor, preferenceKey, preferenceValue)
+        put(editor, preferenceKey, preferenceValue)
         editor.apply()
     }
 

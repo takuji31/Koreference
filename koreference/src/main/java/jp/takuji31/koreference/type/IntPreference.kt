@@ -10,7 +10,7 @@ interface IntPreference : Preference<Int> {
         return pref.getInt(key, default)
     }
 
-    override fun set(editor: SharedPreferences.Editor, key: String, value: Int) {
+    override fun put(editor: SharedPreferences.Editor, key: String, value: Int) {
         editor.putInt(key, value)
     }
 }

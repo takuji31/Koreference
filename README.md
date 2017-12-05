@@ -37,12 +37,12 @@ class MyPreferences(sharefPreferences : SharedPreferences) : KoreferenceModel(sh
 class MyPreferences(context : Context) : KoreferenceModel(context = context, name = "my_preferences", mode = Context.MODE_PRIVATE)
 ```
 
-Create model instance and set/get value
+Create model instance and put/get value
 
 ```kotlin
 val pref = MyPreferences(context = this)
 
-// set values
+// put values
 pref.name = "takuji31"
 pref.age = 28
 
