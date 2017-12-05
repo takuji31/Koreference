@@ -8,7 +8,6 @@ group='com.github.takuji31'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 15
