@@ -9,20 +9,20 @@ import kotlin.reflect.KProperty
 /**
  * Created by takuji on 2015/08/08.
  */
-abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val preferenceKey: String) : ReadWriteProperty<KoreferenceModel, M>, Preference<P>, ValueConverter<P, M> {
+abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val preferenceKey: String, private val valueConverter: ValueConverter<P, M>) : ReadWriteProperty<KoreferenceModel, M>, Preference<P> {
 
     private val rawDefaultValue: P by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
-        toPreferenceValue(default)
+        valueConverter.toPreferenceValue(default)
     }
 
     override fun getValue(thisRef: KoreferenceModel, property: KProperty<*>): M {
         val value = get(thisRef.sharedPreferences, preferenceKey, rawDefaultValue)
-        return toModelValue(value)
+        return valueConverter.toModelValue(value)
     }
 
     override fun setValue(thisRef: KoreferenceModel, property: KProperty<*>, value: M) {
         val transactionEditor = thisRef.transactionEditor
-        val preferenceValue = toPreferenceValue(value)
+        val preferenceValue = valueConverter.toPreferenceValue(value)
 
         transactionEditor?.let {
             set(it, preferenceKey, preferenceValue)
