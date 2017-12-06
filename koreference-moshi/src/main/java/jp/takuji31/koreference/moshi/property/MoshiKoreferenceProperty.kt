@@ -1,8 +1,8 @@
-package jp.takuji31.koreference.gson.property
+package jp.takuji31.koreference.moshi.property
 
 import com.squareup.moshi.JsonAdapter
 import jp.takuji31.koreference.KoreferenceProperty
-import jp.takuji31.koreference.gson.converter.MoshiConverter
+import jp.takuji31.koreference.moshi.converter.MoshiConverter
 import jp.takuji31.koreference.store.Stores
 
 /**

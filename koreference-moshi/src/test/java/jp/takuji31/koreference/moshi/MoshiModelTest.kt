@@ -1,4 +1,4 @@
-package jp.takuji31.koreference.gson.test
+package jp.takuji31.koreference.moshi
 
 import android.content.Context
 import android.content.SharedPreferences

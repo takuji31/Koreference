@@ -1,4 +1,4 @@
-package jp.takuji31.koreference.gson.converter
+package jp.takuji31.koreference.moshi.converter
 
 import com.squareup.moshi.JsonAdapter
 import jp.takuji31.koreference.converter.ValueConverter
