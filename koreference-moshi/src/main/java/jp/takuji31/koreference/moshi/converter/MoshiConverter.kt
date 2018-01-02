@@ -6,7 +6,7 @@ import jp.takuji31.koreference.converter.ValueConverter
 /**
  * Created by takuji on 2015/08/14.
  */
-class MoshiConverter<T : Any?>(val adapter: JsonAdapter<T>, private val defaultValue: T) : ValueConverter<String?, T> {
+class MoshiConverter<T : Any?>(private val adapter: JsonAdapter<T>, private val defaultValue: T) : ValueConverter<String?, T> {
     override fun toPreferenceValue(value: T): String? {
         return if (value != null) adapter.toJson(value) else null
     }
