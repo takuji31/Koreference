@@ -43,7 +43,7 @@ object Stores {
         }
     }
 
-    val String = object : Store.SupportsNonNull<String>() {
+    val String = object : Store<String?> {
         override fun get(pref: SharedPreferences, key: String, defaultValue: String?): String? {
             return pref.getString(key, defaultValue)
         }
@@ -53,7 +53,7 @@ object Stores {
         }
     }
 
-    val StringSet = object : Store.SupportsNonNull<Set<String>>() {
+    val StringSet = object : Store<Set<String>?> {
         override fun get(pref: SharedPreferences, key: String, defaultValue: Set<String>?): Set<String>? {
             return pref.getStringSet(key, defaultValue)
         }
@@ -62,9 +62,5 @@ object Stores {
             editor.putStringSet(key, value)
         }
     }
-
-    val NonNullString = String.toNonnullStore()
-
-    val NonNullStringSet = StringSet.toNonnullStore()
 
 }
