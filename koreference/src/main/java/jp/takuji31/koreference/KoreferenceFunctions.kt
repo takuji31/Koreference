@@ -30,7 +30,7 @@ fun booleanPreference(default: Boolean = false, key: String? = null): BooleanKor
     return BooleanKoreferenceProperty.Raw(default, key)
 }
 
-fun stringSetPreference(default: Set<String> = HashSet<String>(), key: String? = null): StringSetKoreferenceProperty.NonNull {
+fun stringSetPreference(default: Set<String> = hashSetOf(), key: String? = null): StringSetKoreferenceProperty.NonNull {
     return StringSetKoreferenceProperty.NonNull(default, key)
 }
 
