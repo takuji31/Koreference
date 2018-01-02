@@ -3,17 +3,8 @@ package jp.takuji31.koreference.observable
 import android.content.SharedPreferences
 import io.reactivex.Observable
 import io.reactivex.Single
-import jp.takuji31.koreference.KoreferenceModel
 import jp.takuji31.koreference.KoreferenceProperty
 import kotlin.reflect.KProperty0
-import kotlin.reflect.KProperty1
-import kotlin.reflect.full.instanceParameter
-
-private fun <T: KoreferenceObservableModel> ensurePropertyIsMine(receiver :T, property: KProperty0<*>) {
-    if (receiver.javaClass.kotlin != property.instanceParameter?.type?.classifier) {
-        throw IllegalArgumentException("$property is not property of ${receiver.javaClass.kotlin.qualifiedName}")
-    }
-}
 
 fun <T : KoreferenceObservableModel, R> T.getValueAsSingle(property: KProperty0<R>): Single<R> {
     getKoreferencePropertyKey(property)
