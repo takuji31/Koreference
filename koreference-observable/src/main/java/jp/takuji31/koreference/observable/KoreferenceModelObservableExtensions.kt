@@ -16,14 +16,14 @@ fun <T : KoreferenceObservableModel, R> T.getValueAsSingle(property: KProperty0<
 fun <T : KoreferenceObservableModel, R> T.observe(property: KProperty0<R>): Observable<R> {
     val key = getKoreferencePropertyKey(property)
     return Observable.create { emitter ->
-        val initialiValue = property.get()
+        val initialValue = property.get()
 
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, changedKey ->
             if (changedKey == key) {
                 emitter.onNext(property.get())
             }
         }
-        emitter.onNext(initialiValue)
+        emitter.onNext(initialValue)
         sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
         emitter.setCancellable {
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
