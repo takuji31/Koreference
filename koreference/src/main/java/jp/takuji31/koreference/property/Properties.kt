@@ -59,3 +59,15 @@ open class StringSetKoreferenceProperty<T: Any?>(
     class NonNull(defaultValue: Set<String>, preferenceKey: String?) : StringSetKoreferenceProperty<Set<String>>(defaultValue, preferenceKey, ValueConverters.nonNull(defaultValue))
 }
 
+class EnumKoreferenceProperty<T: Enum<T>>(
+        defaultValue: T,
+        preferenceKey: String?,
+        valueConverter: ValueConverter<String?, T>
+) : StringKoreferenceProperty<T>(defaultValue, preferenceKey, valueConverter)
+
+class NullableEnumKoreferenceProperty<T: Enum<T>>(
+        defaultValue: T?,
+        preferenceKey: String?,
+        valueConverter: ValueConverter<String?, T?>
+) : StringKoreferenceProperty<T?>(defaultValue, preferenceKey, valueConverter)
+
