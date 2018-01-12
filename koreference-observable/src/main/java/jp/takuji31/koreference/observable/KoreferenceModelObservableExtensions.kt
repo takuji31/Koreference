@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import io.reactivex.Observable
 import io.reactivex.Single
 import jp.takuji31.koreference.KoreferenceProperty
+import jp.takuji31.koreference.property.KoreferencePropertyProvider
 import kotlin.reflect.KProperty0
 
 fun <T : KoreferenceObservableModel, R> T.getValueAsSingle(property: KProperty0<R>): Single<R> {
@@ -31,5 +32,5 @@ fun <T : KoreferenceObservableModel, R> T.observe(property: KProperty0<R>): Obse
     }
 }
 
-fun <P, M> KoreferenceProperty<P, M>.withObservableSupport(): KoreferenceObservablePropertyProvider<P, M>
+fun <P, M> KoreferenceProperty<P, M>.enableObservableSupport(): KoreferencePropertyProvider<P, M>
         = KoreferenceObservablePropertyProvider(this)

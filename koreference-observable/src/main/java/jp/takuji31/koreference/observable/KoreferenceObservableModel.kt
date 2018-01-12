@@ -19,6 +19,6 @@ abstract class KoreferenceObservableModel : KoreferenceModel {
     constructor(context: Context, name: String) : super(context, name)
 
     internal fun getKoreferencePropertyKey(property: KProperty0<*>): String {
-        return propertyToKeyMap[property.name] ?: throw IllegalArgumentException("Cannot observe ${this.javaClass.kotlin.qualifiedName}.${property.name}. You must call KoreferenceProperty.withObservableSupport()")
+        return propertyToKeyMap[property.name] ?: throw IllegalArgumentException("Cannot observe ${this.javaClass.kotlin.qualifiedName}.${property.name}. You must call KoreferenceProperty.enableObservableSupport()")
     }
 }
