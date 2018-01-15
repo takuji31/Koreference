@@ -1,9 +1,8 @@
 package jp.takuji31.koreference.gson.property
 
 import com.google.gson.Gson
-import jp.takuji31.koreference.KoreferenceProperty
 import jp.takuji31.koreference.gson.converter.GsonConverter
-import jp.takuji31.koreference.store.Stores
+import jp.takuji31.koreference.property.StringKoreferenceProperty
 import java.lang.reflect.Type
 
 /**
@@ -14,4 +13,4 @@ class GsonKoreferenceProperty<T: Any?>(
         preferenceKey: String?,
         gson: Gson,
         type: Type
-) : KoreferenceProperty<String?, T>(default, preferenceKey, GsonConverter<T>(gson, type), Stores.String)
+) : StringKoreferenceProperty<T>(default, preferenceKey, GsonConverter<T>(gson, type))
