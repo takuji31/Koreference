@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker: 
-            - image: circleci/android:api-26-alpha
+            - image: circleci/android:api-27-node8-alpha
         steps:
             - checkout
             - restore_cache:
