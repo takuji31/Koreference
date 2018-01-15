@@ -45,6 +45,7 @@ class SharedPreferencesTest {
         assertEquals(model.floatValue, 12.34f, "Float default value")
         assertEquals(model.boolValue, true, "Boolean default value")
         assertEquals(model.stringSetValue, setOf<String>(), "String set default value")
+        assertEquals(model.enumValue, TestEnum.FUGA, "Enum default value")
     }
 
     @Test
@@ -57,6 +58,7 @@ class SharedPreferencesTest {
         model.floatValue = 1234.5678f
         model.boolValue = false
         model.stringSetValue = setOf("foo", "bar")
+        model.enumValue = TestEnum.PIYO
 
         assertEquals(model.stringValue, "new value", "String new value")
         assertEquals(model.intValue, 12345, "Int new value")
@@ -64,6 +66,7 @@ class SharedPreferencesTest {
         assertEquals(model.floatValue, 1234.5678f, "Float new value")
         assertEquals(model.boolValue, false, "Boolean new value")
         assertEquals(model.stringSetValue, setOf("foo", "bar"), "String set default value")
+        assertEquals(model.enumValue, TestEnum.PIYO, "Enum new value")
     }
 
     @Test
@@ -72,12 +75,15 @@ class SharedPreferencesTest {
 
         assertNull(model.stringValue, "Nullable string default value")
         assertNull(model.stringSetValue, "Nullable string set default value")
+        assertNull(model.enumValue, "Nullable enum default value")
 
         model.stringValue = "new value"
         model.stringSetValue = setOf("foo", "bar")
+        model.enumValue = TestEnum.HOGE
 
         assertEquals(model.stringValue!!, "new value", "Nullable string new value")
         assertEquals(model.stringSetValue!!, setOf("foo", "bar"), "Nullable string set new value")
+        assertEquals(model.enumValue!!, TestEnum.HOGE, "Nullable enum set new value")
 
     }
 

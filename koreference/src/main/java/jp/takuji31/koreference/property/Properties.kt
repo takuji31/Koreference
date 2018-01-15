@@ -73,12 +73,24 @@ open class StringSetKoreferenceProperty<T: Any?>(
 class EnumKoreferenceProperty<T: Enum<T>>(
         defaultValue: T,
         preferenceKey: String?,
-        valueConverter: ValueConverter<String?, T>
-) : StringKoreferenceProperty<T>(defaultValue, preferenceKey, valueConverter)
+        valueConverter: ValueConverter<String, T>
+) : StringKoreferenceProperty<T>(defaultValue, preferenceKey, valueConverter.forceConvertToNullable())
 
 class NullableEnumKoreferenceProperty<T: Enum<T>>(
         defaultValue: T?,
         preferenceKey: String?,
         valueConverter: ValueConverter<String?, T?>
 ) : StringKoreferenceProperty<T?>(defaultValue, preferenceKey, valueConverter)
+
+private fun <P, M> ValueConverter<P, M>.forceConvertToNullable(): ValueConverter<P?, M> {
+    return object : ValueConverter<P?, M> {
+        override fun toPreferenceValue(value: M): P? {
+            return this@forceConvertToNullable.toPreferenceValue(value)
+        }
+
+        override fun toModelValue(value: P?): M {
+            return this@forceConvertToNullable.toModelValue(value!!)
+        }
+    }
+}
 

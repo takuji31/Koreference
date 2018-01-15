@@ -1,5 +1,6 @@
 package jp.takuji31.koreference
 
+import jp.takuji31.koreference.converter.ValueConverters
 import jp.takuji31.koreference.property.*
 
 
@@ -34,3 +35,12 @@ fun KoreferenceModel.stringSetPreference(default: Set<String> = hashSetOf(), key
 fun KoreferenceModel.nullableStringSetPreference(default: Set<String>? = null, key: String? = null): StringSetKoreferenceProperty.Nullable {
     return StringSetKoreferenceProperty.Nullable(default, key)
 }
+
+inline fun <reified T: Enum<T>> KoreferenceModel.enumPreference(default: T, key: String? = null) : EnumKoreferenceProperty<T> {
+    return EnumKoreferenceProperty(default, key, ValueConverters.nonNullEnum())
+}
+
+inline fun <reified T: Enum<T>> KoreferenceModel.nullableEnumPreference(default: T? = null, key: String? = null) : NullableEnumKoreferenceProperty<T> {
+    return NullableEnumKoreferenceProperty(default, key, ValueConverters.nullableEnum())
+}
+

@@ -15,4 +15,5 @@ class TestPreferenceModel(pref: SharedPreferences) : KoreferenceModel(sharedPref
     var stringSetValue: Set<String> by stringSetPreference(setOf())
 
     var customKeyValue : String by stringPreference(key = "hogeKey")
+    var enumValue: TestEnum by enumPreference(TestEnum.FUGA)
 }
