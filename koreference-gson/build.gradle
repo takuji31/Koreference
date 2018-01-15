@@ -42,7 +42,7 @@ dependencies {
 
     testImplementation 'com.android.support.test:runner:1.0.1'
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
-    testImplementation "org.robolectric:robolectric:3.4.2"
+    testImplementation "org.robolectric:robolectric:3.6.1"
 }
 
 //apply from: rootProject.file('gradle/gradle-bintray.gradle')
