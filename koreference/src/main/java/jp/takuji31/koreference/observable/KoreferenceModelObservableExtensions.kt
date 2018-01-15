@@ -3,18 +3,19 @@ package jp.takuji31.koreference.observable
 import android.content.SharedPreferences
 import io.reactivex.Observable
 import io.reactivex.Single
+import jp.takuji31.koreference.KoreferenceModel
 import jp.takuji31.koreference.KoreferenceProperty
 import jp.takuji31.koreference.property.KoreferencePropertyProvider
 import kotlin.reflect.KProperty0
 
-fun <T : KoreferenceObservableModel, R> T.getValueAsSingle(property: KProperty0<R>): Single<R> {
+fun <T : KoreferenceModel, R> T.getValueAsSingle(property: KProperty0<R>): Single<R> {
     getKoreferencePropertyKey(property)
     return Single.fromCallable {
         property.get()
     }
 }
 
-fun <T : KoreferenceObservableModel, R> T.observe(property: KProperty0<R>): Observable<R> {
+fun <T : KoreferenceModel, R> T.observe(property: KProperty0<R>): Observable<R> {
     val key = getKoreferencePropertyKey(property)
     return Observable.create { emitter ->
         val initialValue = property.get()
