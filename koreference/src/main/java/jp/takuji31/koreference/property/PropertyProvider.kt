@@ -1,13 +1,19 @@
-package jp.takuji31.koreference.observable
+package jp.takuji31.koreference.property
 
 import jp.takuji31.koreference.KoreferenceModel
 import jp.takuji31.koreference.KoreferenceProperty
-import jp.takuji31.koreference.property.KoreferencePropertyProvider
 import kotlin.reflect.KProperty
 
-class KoreferenceObservablePropertyProvider<P, M>(
+/**
+ * PropertyProvider
+ */
+interface PropertyProvider<P, M> {
+    operator fun provideDelegate(thisRef: KoreferenceModel, prop: KProperty<*>): KoreferenceProperty<P, M>
+}
+
+class DefaultPropertyProvider<P, M>(
         private val koreferenceProperty: KoreferenceProperty<P, M>
-) : KoreferencePropertyProvider<P, M> {
+) : PropertyProvider<P, M> {
 
     override operator fun provideDelegate(thisRef: KoreferenceModel, prop: KProperty<*>) : KoreferenceProperty<P, M> {
         val propertyName = prop.name
@@ -19,3 +25,6 @@ class KoreferenceObservablePropertyProvider<P, M>(
         return koreferenceProperty
     }
 }
+
+fun <P, M> KoreferenceProperty<P, M>.toPropertyProvider(): PropertyProvider<P, M>
+        = DefaultPropertyProvider(this)
