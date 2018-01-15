@@ -2,8 +2,6 @@ package jp.takuji31.koreference.observable
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
 import jp.takuji31.koreference.test.TestKoreferenceModel
 import org.junit.After
 import org.junit.Before

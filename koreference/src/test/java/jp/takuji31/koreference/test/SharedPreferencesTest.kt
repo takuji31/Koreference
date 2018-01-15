@@ -2,8 +2,6 @@ package jp.takuji31.koreference.test
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -38,7 +36,7 @@ class SharedPreferencesTest {
 
     @Test
     fun testDefaultValue() {
-        val model = TestPreferenceModel(pref = pref)
+        val model = TestKoreferenceModel(pref = pref)
         assertEquals(model.stringValue, "default value", "String default value")
         assertEquals(model.intValue, 256, "Int default value")
         assertEquals(model.longValue, 256L, "Long default value")
@@ -50,7 +48,7 @@ class SharedPreferencesTest {
 
     @Test
     fun testSetValue() {
-        val model = TestPreferenceModel(pref = pref)
+        val model = TestKoreferenceModel(pref = pref)
 
         model.stringValue = "new value"
         model.intValue = 12345
@@ -89,7 +87,7 @@ class SharedPreferencesTest {
 
     @Test
     fun testKeys() {
-        val model = TestPreferenceModel(pref = pref)
+        val model = TestKoreferenceModel(pref = pref)
 
         val nextValue = "next value!!!"
         model.stringValue = nextValue
