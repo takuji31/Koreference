@@ -9,7 +9,7 @@ import jp.takuji31.koreference.store.Stores
 /**
  * Created by takuji on 2017/12/05.
  */
-open class BooleanKoreferenceProperty<T: Any>(
+abstract class BooleanKoreferenceProperty<T: Any>(
         defaultValue: T,
         preferenceKey: String?,
         valueConverter: ValueConverter<Boolean, T>
@@ -19,7 +19,7 @@ open class BooleanKoreferenceProperty<T: Any>(
     class Raw(defaultValue: Boolean, preferenceKey: String?) : BooleanKoreferenceProperty<Boolean>(defaultValue, preferenceKey, ValueConverters.raw())
 }
 
-open class FloatKoreferenceProperty<T: Any>(
+abstract class FloatKoreferenceProperty<T: Any>(
         defaultValue: T,
         preferenceKey: String?,
         valueConverter: ValueConverter<Float, T>
@@ -29,7 +29,7 @@ open class FloatKoreferenceProperty<T: Any>(
     class Raw(defaultValue: Float, preferenceKey: String?) : FloatKoreferenceProperty<Float>(defaultValue, preferenceKey, ValueConverters.raw())
 }
 
-open class IntKoreferenceProperty<T: Any>(
+abstract class IntKoreferenceProperty<T: Any>(
         defaultValue: T,
         preferenceKey: String?,
         valueConverter: ValueConverter<Int, T>
@@ -38,7 +38,7 @@ open class IntKoreferenceProperty<T: Any>(
     class Raw(defaultValue: Int, preferenceKey: String?) : IntKoreferenceProperty<Int>(defaultValue, preferenceKey, ValueConverters.raw())
 }
 
-open class LongKoreferenceProperty<T: Any>(
+abstract class LongKoreferenceProperty<T: Any>(
         defaultValue: T,
         preferenceKey: String?,
         valueConverter: ValueConverter<Long, T>
@@ -48,7 +48,7 @@ open class LongKoreferenceProperty<T: Any>(
     class Raw(defaultValue: Long, preferenceKey: String?) : LongKoreferenceProperty<Long>(defaultValue, preferenceKey, ValueConverters.raw())
 }
 
-open class StringKoreferenceProperty<T: Any?>(
+abstract class StringKoreferenceProperty<T: Any?>(
         defaultValue: T,
         preferenceKey: String?,
         valueConverter: ValueConverter<String?, T>
@@ -59,7 +59,7 @@ open class StringKoreferenceProperty<T: Any?>(
     class NonNull(defaultValue: String, preferenceKey: String?) : StringKoreferenceProperty<String>(defaultValue, preferenceKey, ValueConverters.nonNull(defaultValue))
 }
 
-open class StringSetKoreferenceProperty<T: Any?>(
+abstract class StringSetKoreferenceProperty<T: Any?>(
         defaultValue: T,
         preferenceKey: String?,
         valueConverter: ValueConverter<Set<String>?, T>
