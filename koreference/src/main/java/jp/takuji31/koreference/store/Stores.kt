@@ -2,7 +2,7 @@ package jp.takuji31.koreference.store
 
 import android.content.SharedPreferences
 
-object Stores {
+internal object Stores {
     val Boolean = object : Store<Boolean> {
         override fun get(pref: SharedPreferences, key: String, defaultValue: Boolean): Boolean {
             return pref.getBoolean(key, defaultValue)

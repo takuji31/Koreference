@@ -11,7 +11,7 @@ import kotlin.reflect.KProperty
  */
 abstract class KoreferenceProperty<P : Any?, M : Any?>(val default: M, val preferenceKey: String?, private val valueConverter: ValueConverter<P, M>) {
 
-    abstract val store : Store<P>
+    abstract internal val store : Store<P>
 
     private val rawDefaultValue: P by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         valueConverter.toPreferenceValue(default)

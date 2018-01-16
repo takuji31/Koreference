@@ -11,7 +11,6 @@ abstract class KoreferenceModel(val sharedPreferences: SharedPreferences) {
 
     internal var transactionEditor: SharedPreferences.Editor? = null
 
-
     internal val propertyNameToKeyMap: MutableMap<String, String> = mutableMapOf()
 
     internal val propertyMap: MutableMap<String, KoreferenceProperty<*, *>> = mutableMapOf()
@@ -19,6 +18,10 @@ abstract class KoreferenceModel(val sharedPreferences: SharedPreferences) {
     constructor(context: Context, name: String, mode: Int) : this(sharedPreferences = context.getSharedPreferences(name, mode))
 
     constructor(context: Context, name: String) : this(context = context, name = name, mode = Context.MODE_PRIVATE)
+
+    internal fun koreferencePropertyFor(key: String) : KoreferenceProperty<*, *>? {
+        return propertyMap[key]
+    }
 
     internal fun getKoreferencePropertyKey(property: KProperty0<*>): String {
         return propertyNameToKeyMap[property.name] ?: throw IllegalArgumentException("Cannot observe ${this.javaClass.kotlin.qualifiedName}.${property.name}. You must call KoreferenceProperty.toPropertyProvider()")
