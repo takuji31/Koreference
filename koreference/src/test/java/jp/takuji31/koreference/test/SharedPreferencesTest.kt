@@ -2,6 +2,7 @@ package jp.takuji31.koreference.test
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.test.core.app.ApplicationProvider
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -16,8 +17,8 @@ import kotlin.test.assertNull
  */
 @RunWith(RobolectricTestRunner::class)
 class SharedPreferencesTest {
-    val context: Context by lazy() {
-        RuntimeEnvironment.application
+    val context: Context by lazy {
+        ApplicationProvider.getApplicationContext()
     }
 
     val pref: SharedPreferences by lazy() {

@@ -2,26 +2,22 @@ package jp.takuji31.koreference.gson.test
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.Robolectric
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import org.robolectric.shadows.ShadowApplication
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 /**
  * Created by takuji on 2015/08/14.
  */
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class GsonModelTest {
     val context: Context by lazy(LazyThreadSafetyMode.NONE) {
-        RuntimeEnvironment.application
+        ApplicationProvider.getApplicationContext()
     }
 
     val pref: SharedPreferences by lazy(LazyThreadSafetyMode.NONE) {

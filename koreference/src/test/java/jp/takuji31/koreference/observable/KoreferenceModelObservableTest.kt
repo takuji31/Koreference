@@ -2,24 +2,25 @@ package jp.takuji31.koreference.observable
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import jp.takuji31.koreference.test.TestKoreferenceModel
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import kotlin.properties.Delegates
 import kotlin.test.assertFailsWith
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class KoreferenceModelObservableTest {
 
     var pref: SharedPreferences by Delegates.notNull()
 
     @Before
     fun setup() {
-        pref = RuntimeEnvironment.application.getSharedPreferences("test", Context.MODE_PRIVATE)
+        pref = ApplicationProvider.getApplicationContext<Context>().getSharedPreferences("test", Context.MODE_PRIVATE)
         pref.edit().clear().apply()
     }
 
