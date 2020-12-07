@@ -2,6 +2,7 @@ package jp.takuji31.koreference.test
 
 import android.content.SharedPreferences
 import jp.takuji31.koreference.KoreferenceModel
+import jp.takuji31.koreference.nullableEnumPreference
 import jp.takuji31.koreference.nullableStringPreference
 import jp.takuji31.koreference.nullableStringSetPreference
 
@@ -11,4 +12,5 @@ import jp.takuji31.koreference.nullableStringSetPreference
 class TestNullablePreferenceModel(pref: SharedPreferences) : KoreferenceModel(sharedPreferences = pref) {
     var stringValue: String? by nullableStringPreference()
     var stringSetValue: Set<String>? by nullableStringSetPreference()
+    var enumValue: TestEnum? by nullableEnumPreference()
 }

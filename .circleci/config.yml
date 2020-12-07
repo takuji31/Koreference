@@ -2,17 +2,17 @@ version: 2
 jobs:
     build:
         docker: 
-            - image: circleci/android:api-26-alpha
+            - image: circleci/android:api-27-node8-alpha
         steps:
             - checkout
             - restore_cache:
-                key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }}-{{ checksum  "koreference-observable/build.gradle" }}
+                key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }}-{{ checksum  "koreference-moshi/build.gradle" }}
             - run:
                 name: Download Dependencies
                 command: ./gradlew androidDependencies
             - save_cache:
                 paths: ~/.gradle
-                key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }}-{{ checksum  "koreference-observable/build.gradle" }}
+                key: deps-{{ checksum "build.gradle" }}-{{ checksum  "koreference/build.gradle" }}-{{ checksum  "koreference-gson/build.gradle" }}-{{ checksum  "koreference-moshi/build.gradle" }}
             - run:
                 name: Run Tests
                 command: ./gradlew testDebugUnitTest

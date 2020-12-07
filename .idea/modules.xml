@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Koreference.iml" filepath="$PROJECT_DIR$/Koreference.iml" />
       <module fileurl="file://$PROJECT_DIR$/koreference/koreference.iml" filepath="$PROJECT_DIR$/koreference/koreference.iml" />
       <module fileurl="file://$PROJECT_DIR$/koreference-gson/koreference-gson.iml" filepath="$PROJECT_DIR$/koreference-gson/koreference-gson.iml" />
-      <module fileurl="file://$PROJECT_DIR$/koreference-observable/koreference-observable.iml" filepath="$PROJECT_DIR$/koreference-observable/koreference-observable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/koreference-moshi/koreference-moshi.iml" filepath="$PROJECT_DIR$/koreference-moshi/koreference-moshi.iml" />
     </modules>
   </component>
 </project>

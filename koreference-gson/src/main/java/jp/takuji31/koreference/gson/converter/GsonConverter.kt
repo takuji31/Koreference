@@ -11,11 +11,7 @@ import java.lang.reflect.Type
 inline fun <reified T> typeToken() : Type {
     return object : TypeToken<T>() {}.type
 }
-interface GsonConverter<T : Any?> : ValueConverter<String?, T> {
-    val gson: Gson
-
-    val type : Type
-
+class GsonConverter<T : Any?>(val gson: Gson, val type: Type) : ValueConverter<String?, T> {
     override fun toPreferenceValue(value: T): String? {
         return if (value != null) gson.toJson(value) else null
     }
